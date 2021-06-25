@@ -19,7 +19,7 @@
             <div class="panel-body">
                 <div class="well">
                 </div>
-                <div class="slotwrapper" id="example6" style="width:800px;height:1100px">
+                <div class="slotwrapper" id="example6" style="width:418px;height:578px">
                     <ul>
                     </ul>
                 </div>
@@ -41,14 +41,14 @@
     <script type="text/javascript">
 
   for(var i=1;i<31;i++){
-      var image_name = "cards/cp";
+      var image_name = "cards/01_";
       if(i<10){
         image_name+=("0"+i)
       }else{
         image_name+=(i)
       }
-      image_name+=".png";
-      $("#example6 ul").append("<img src='"+image_name+"'>");
+      image_name+="-fs8.png";
+      $("#example6 ul").append("<li><img src='"+image_name+"'></li>");
       }
         $('#btn-example6').click(function() {
             $('#example6 ul').playSpin();
