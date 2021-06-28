@@ -1,7 +1,7 @@
-const SLOTS_PER_REEL = 12;
+const SLOTS_PER_REEL = 40;
 // radius = Math.round( ( panelWidth / 2) / Math.tan( Math.PI / SLOTS_PER_REEL ) ); 
 // current settings give a value of 149, rounded to 150
-const REEL_RADIUS = 150;
+const REEL_RADIUS = 450;
 
 function createSlots (ring) {
   
@@ -22,6 +22,8 @@ function createSlots (ring) {
     var image_path="cards/01_";
     if(i<9){
       image_path+=("0"+(i+1));
+    }else if(i>29){
+      image_path+=("01");
     }else{
       image_path+=(i+1);
     }
@@ -41,7 +43,7 @@ function createSlots (ring) {
 
 function getSeed() {
   // generate random number smaller than 13 then floor it to settle between 0 and 12 inclusive
-  return Math.floor(Math.random()*(SLOTS_PER_REEL));
+  return Math.floor(Math.random()*(SLOTS_PER_REEL))%12;
 }
 
 function spin(timer) {
