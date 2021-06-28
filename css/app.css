@@ -35,7 +35,6 @@ body {
   width: 90px;
   float: left;
   transform-style: preserve-3d;
-  background-image:url("https://via.placeholder.com/150");
 }
 .slot {
   position: absolute;

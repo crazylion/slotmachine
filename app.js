@@ -83,6 +83,7 @@ $(document).ready(function() {
   $('.go').on('click',function(){
     var timer = 2;
     spin(timer);
+    document.getElementById("audio-spin").play();
   })
 
   // hook xray checkbox
