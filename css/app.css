@@ -81,6 +81,7 @@ label {
   transform: rotateY(45deg);
 }
 /*=====*/
+/** 360/SLOTS_PER_REEL **/
 .spin-0     { transform: rotateX(-3719deg); }
 .spin-1     { transform: rotateX(-3749deg); }
 .spin-2     { transform: rotateX(-3779deg); }
