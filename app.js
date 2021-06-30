@@ -2,12 +2,33 @@ const SLOTS_PER_REEL = 36;
 // radius = Math.round( ( panelWidth / 2) / Math.tan( Math.PI / SLOTS_PER_REEL ) ); 
 // current settings give a value of 149, rounded to 150
 const REEL_RADIUS = 450;
+const MAX_IMAGE_SIZE=60;
+
+const ssr_card_id=[1];
+const sr_card_id=[];
+const r_card_id = [];
+
+function shuffleArray(array) {
+    for (var i = array.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    }
+}
 
 function createSlots (ring) {
   
   var slotAngle = 360 / SLOTS_PER_REEL;
 
   var seed = getSeed();
+  //generate card array
+  var image_array=[];
+  for(var i=0;i<MAX_IMAGE_SIZE;i++){
+      image_array[i] = (i+1);
+  }
+
+//  shuffleArray(image_array);
 
   for (var i = 0; i < SLOTS_PER_REEL; i ++) {
     var slot = document.createElement('div');
@@ -19,15 +40,14 @@ function createSlots (ring) {
 
     slot.style.transform = transform;
 
-    var image_path="cards/01_";
-    if(i<9){
-      image_path+=("0"+(i+1));
-    }else if(i>29){
-      image_path+=("01");
+    var image_path="cards/";
+    var image_id = image_array[i];
+    if(image_id<10){
+      image_path+=("0"+(image_id));
     }else{
-      image_path+=(i+1);
+      image_path+=(image_id);
     }
-    image_path+="-fs8.png";
+    image_path+=".png";
     slot.style.backgroundImage="url("+image_path+")";
     slot.style.backgroundSize="cover";
 
@@ -44,7 +64,9 @@ function createSlots (ring) {
 function getSeed() {
   // generate random number smaller than 13 then floor it to settle between 0 and 12 inclusive
   return Math.floor(Math.random()*(SLOTS_PER_REEL))%12;
+  //return 1;
 }
+
 
 function spin(timer) {
   //var txt = 'seeds: ';
@@ -117,3 +139,4 @@ $(document).ready(function() {
     $('#stage').toggleClass('perspective-on perspective-off');
   })  
  });
+$('#stage').toggleClass('perspective-on perspective-off');
