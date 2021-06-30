@@ -52,14 +52,13 @@ function createSlots (ring) {
   for(var i=35;i<36;i++){
     image_array[i]=getCard("ssr");
   }
-  console.log(image_array);
 
 //  shuffleArray(image_array);
 
   for (var i = 0; i < SLOTS_PER_REEL; i ++) {
     var slot = document.createElement('div');
     
-    slot.className = 'slot';
+    slot.className = 'slot item_'+i;
 
     // compute and assign the transform for this slot
     var transform = 'rotateX(' + (slotAngle * i) + 'deg) translateZ(' + REEL_RADIUS + 'px)';
@@ -88,14 +87,18 @@ function createSlots (ring) {
 
 function getSeed() {
   // generate random number smaller than 13 then floor it to settle between 0 and 12 inclusive
-  return Math.floor(Math.random()*(SLOTS_PER_REEL))%12;
-  //return 1;
+  //return Math.floor(Math.random()*(SLOTS_PER_REEL))%12;
+  var arr = [0,1];
+  return arr[Math.floor(Math.random()*arr.length)];
+	
+  return 12;
 }
 
 
 function spin(timer) {
   //var txt = 'seeds: ';
   for(var i = 1; i < 6; i ++) {
+   $("#ring"+i+" .choosed").removeClass("choosed");
     var oldSeed = -1;
     /*
     checking that the old seed from the previous iteration is not the same as the current iteration;
@@ -104,16 +107,47 @@ function spin(timer) {
     var oldClass = $('#ring'+i).attr('class');
     if(oldClass.length > 4) {
       oldSeed = parseInt(oldClass.slice(10));
-      console.log(oldSeed);
     }
     var seed = getSeed();
     while(oldSeed == seed) {
       seed = getSeed();
     }
+      console.log("ring",i," oldSeed",oldSeed,"newseed",seed);
+      //抽出哪個會中，
+      var index = Math.floor(Math.random()*(SLOTS_PER_REEL));
+      console.log("index=",index);
+      switch(seed){
+        case 0: 
+            //交換位置
+
+            var pic1= $("#ring"+i+" .item_11").css("background-image"); 
+            var pic2 = $("#ring"+i+" .item_"+index).css("background-image");
+            $("#ring"+i+" .item_11").css("background-image",pic2);
+            $("#ring"+i+" .item_"+index).css("background-image",pic1);
+        break;  //item11
+        case 1:
+            var pic1= $("#ring"+i+" .item_14").css("background-image"); 
+            var pic2 = $("#ring"+i+" .item_"+index).css("background-image");
+            $("#ring"+i+" .item_14").css("background-image",pic2);
+            $("#ring"+i+" .item_"+index).css("background-image",pic1);
+
+        break;  //item14
+      }
 
     $('#ring'+i)
       .css('animation','back-spin 1s, spin-' + seed + ' ' + (timer + i*0.5) + 's')
       .attr('class','ring spin-' + seed);
+      (function(_i,_seed){
+        setTimeout(function(){
+            if(_seed ==0){
+              $("#ring"+_i+" .item_11").addClass("choosed");
+            }else{
+              $("#ring"+_i+" .item_14").addClass("choosed");
+
+            }
+        },5000);
+      }
+      )(i,seed);
   }
 
   console.log('=====');
@@ -164,3 +198,4 @@ $(document).ready(function() {
     $('#stage').toggleClass('perspective-on perspective-off');
   })  
  });
+$('#stage').toggleClass('perspective-on perspective-off');
