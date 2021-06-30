@@ -164,4 +164,3 @@ $(document).ready(function() {
     $('#stage').toggleClass('perspective-on perspective-off');
   })  
  });
-$('#stage').toggleClass('perspective-on perspective-off');
