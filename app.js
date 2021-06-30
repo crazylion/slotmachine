@@ -4,9 +4,10 @@ const SLOTS_PER_REEL = 36;
 const REEL_RADIUS = 450;
 const MAX_IMAGE_SIZE=60;
 
-const ssr_card_id=[1];
-const sr_card_id=[];
-const r_card_id = [];
+const ssr_card_id = ["ssr/tp1.png","ssr/tp2.png","ssr/tp3.png","ssr/tp4.png"];
+const sr_card_id  = ["sr/60.png","sr/59.png","sr/58.png","sr/57.png","sr/50.png"];
+const r_card_id   = ["r/49.png","r/14.png","r/28.png","r/29.png","r/01.png","r/15.png","r/17.png","r/16.png","r/06.png","r/12.png","r/13.png","r/07.png","r/39.png","r/11.png","r/05.png","r/04.png","r/38.png","r/35.png","r/21.png","r/09.png","r/08.png","r/20.png","r/34.png","r/22.png","r/36.png","r/37.png","r/23.png","r/27.png","r/32.png","r/26.png","r/30.png","r/24.png","r/25.png","r/31.png","r/19.png","r/56.png","r/43.png","r/55.png","r/54.png","r/51.png","r/53.png","r/46.png"];
+const n_card_id   = ["n/48.png","n/03.png","n/02.png","n/10.png","n/33.png","n/18.png","n/42.png","n/41.png","n/40.png","n/44.png","n/45.png","n/47.png"];
 
 function shuffleArray(array) {
     for (var i = array.length - 1; i > 0; i--) {
@@ -17,6 +18,21 @@ function shuffleArray(array) {
     }
 }
 
+function getCard(type){
+  if(type=="n"){
+    return n_card_id[Math.floor(Math.random()*n_card_id.length)];
+  }else if(type=="r"){
+    return r_card_id[Math.floor(Math.random()*r_card_id.length)];
+  }else if(type=="sr"){
+    return sr_card_id[Math.floor(Math.random()*sr_card_id.length)];
+  }else if( type=="ssr"){
+    return ssr_card_id[Math.floor(Math.random()*ssr_card_id.length)];
+  }
+}
+
+//
+//
+// 36個裡面配置 ssr 1:/sr: 2: r:5, n: 28 
 function createSlots (ring) {
   
   var slotAngle = 360 / SLOTS_PER_REEL;
@@ -24,9 +40,19 @@ function createSlots (ring) {
   var seed = getSeed();
   //generate card array
   var image_array=[];
-  for(var i=0;i<MAX_IMAGE_SIZE;i++){
-      image_array[i] = (i+1);
+  for(var i=0;i<28;i++){
+    image_array[i]=getCard("n");
   }
+  for(var i=28;i<33;i++){
+    image_array[i]=getCard("r");
+  }
+  for(var i=33;i<35;i++){
+    image_array[i]=getCard("sr");
+  }
+  for(var i=35;i<36;i++){
+    image_array[i]=getCard("ssr");
+  }
+  console.log(image_array);
 
 //  shuffleArray(image_array);
 
@@ -47,7 +73,6 @@ function createSlots (ring) {
     }else{
       image_path+=(image_id);
     }
-    image_path+=".png";
     slot.style.backgroundImage="url("+image_path+")";
     slot.style.backgroundSize="cover";
 
