@@ -166,16 +166,22 @@ function spin(timer) {
     setTimeout(function(){
     //搜尋是否抽中ssr 
     var is_ssr = false;
+    var is_sr = false;
     $(".ring .choosed").each(function(){
             var pic= $(this).css("background-image"); 
             if(pic.indexOf("ssr")!=-1){
                 is_ssr=true;
+            }else if(pic.indexOf("sr")!=-1){
+                is_sr = true;
             }
+            
           
     });
     if(is_ssr){
-
         document.getElementById("spin-result-ssr").play();
+    }else if(is_sr){
+        console.log("play sr");
+        document.getElementById("spin-result-sr").play();
     }else{
         document.getElementById("spin-result").play();
     }
