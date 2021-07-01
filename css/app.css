@@ -160,5 +160,6 @@ label {
 
 .choosed{
 border: solid 5px yellow;
+box-shadow: 0 0 15px yellow;
 }
 
