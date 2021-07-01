@@ -121,7 +121,7 @@ function spin(timer) {
             var pic1= $("#ring"+i+" .item_11").css("background-image"); 
             var pic2 = $("#ring"+i+" .item_"+index).css("background-image");
             if(pic2.indexOf("ssr") !=-1){
-                    if(Math.random() > 0.5){
+                    if(Math.random() > 0.8){
                       $("#ring"+i+" .item_11").css("background-image",pic2);
                       $("#ring"+i+" .item_"+index).css("background-image",pic1);
                     }
@@ -135,7 +135,7 @@ function spin(timer) {
             var pic1= $("#ring"+i+" .item_14").css("background-image"); 
             var pic2 = $("#ring"+i+" .item_"+index).css("background-image");
             if(pic2.indexOf("ssr") !=-1){
-                    if(Math.random() > 0.5){
+                    if(Math.random() > 0.8){
                       $("#ring"+i+" .item_11").css("background-image",pic2);
                       $("#ring"+i+" .item_"+index).css("background-image",pic1);
                     }
@@ -206,6 +206,8 @@ $(document).ready(function() {
   $('.go').on('click',function(){
     var timer = 2;
     spin(timer);
+    document.getElementById("audio-spin").pause();
+    document.getElementById("audio-spin").currentTime=0;
     document.getElementById("audio-spin").play();
     $(this).attr("disabled",true);
   })
