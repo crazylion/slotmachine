@@ -112,7 +112,6 @@ function spin(timer) {
     while(oldSeed == seed) {
       seed = getSeed();
     }
-      console.log("ring",i," oldSeed",oldSeed,"newseed",seed);
       //抽出哪個會中，
       var index = Math.floor(Math.random()*(SLOTS_PER_REEL));
       switch(seed){
@@ -164,6 +163,27 @@ function spin(timer) {
       )(i,seed);
   }
 
+    setTimeout(function(){
+    //搜尋是否抽中ssr 
+    var is_ssr = false;
+    $(".ring .choosed").each(function(){
+            var pic= $(this).css("background-image"); 
+            if(pic.indexOf("ssr")!=-1){
+                is_ssr=true;
+            }
+          
+    });
+    if(is_ssr){
+
+        document.getElementById("spin-result-ssr").play();
+    }else{
+        document.getElementById("spin-result").play();
+    }
+
+
+    $(".go").attr("disabled",false);
+
+    },5000);
   console.log('=====');
 }
 
@@ -181,6 +201,7 @@ $(document).ready(function() {
     var timer = 2;
     spin(timer);
     document.getElementById("audio-spin").play();
+    $(this).attr("disabled",true);
   })
 
   // hook xray checkbox
@@ -212,4 +233,5 @@ $(document).ready(function() {
     $('#stage').toggleClass('perspective-on perspective-off');
   })  
  });
+
 $('#stage').toggleClass('perspective-on perspective-off');
