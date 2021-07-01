@@ -1,6 +1,10 @@
 body {
   margin: 0;
   padding: 0;
+  background-color: #000;
+  background-image: url(../images/206595874_244793723756543_1856680470929635331_n.jpg);
+  background-repeat: no-repeat;
+  background-position: center; 
 }
 
 #stage {
@@ -159,7 +163,7 @@ label {
 }
 
 .choosed{
-border: solid 5px yellow;
-box-shadow: 0 0 15px yellow;
+border: solid 3px white;
+box-shadow: 0 0 15px white;
 }
 
