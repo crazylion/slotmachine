@@ -125,12 +125,11 @@ function spin(timer) {
                       $("#ring"+i+" .item_11").css("background-image",pic2);
                       $("#ring"+i+" .item_"+index).css("background-image",pic1);
                     }
-            else if(pic2.indexOf("sr") !=-1){
+            }else if(pic2.indexOf("sr") !=-1){
                     if(Math.random() > 0.6){
                       $("#ring"+i+" .item_11").css("background-image",pic2);
                       $("#ring"+i+" .item_"+index).css("background-image",pic1);
                     }
-            }
             }else{
               $("#ring"+i+" .item_11").css("background-image",pic2);
               $("#ring"+i+" .item_"+index).css("background-image",pic1);
@@ -145,7 +144,7 @@ function spin(timer) {
                       $("#ring"+i+" .item_11").css("background-image",pic2);
                       $("#ring"+i+" .item_"+index).css("background-image",pic1);
                     }
-            }else if(){
+            }else if(pic2.indexOf("sr") !=-1){
                     if(Math.random() > 0.6){
                       $("#ring"+i+" .item_11").css("background-image",pic2);
                       $("#ring"+i+" .item_"+index).css("background-image",pic1);
