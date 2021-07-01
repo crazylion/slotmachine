@@ -115,21 +115,35 @@ function spin(timer) {
       console.log("ring",i," oldSeed",oldSeed,"newseed",seed);
       //抽出哪個會中，
       var index = Math.floor(Math.random()*(SLOTS_PER_REEL));
-      console.log("index=",index);
       switch(seed){
         case 0: 
             //交換位置
 
             var pic1= $("#ring"+i+" .item_11").css("background-image"); 
             var pic2 = $("#ring"+i+" .item_"+index).css("background-image");
-            $("#ring"+i+" .item_11").css("background-image",pic2);
-            $("#ring"+i+" .item_"+index).css("background-image",pic1);
+            if(pic2.indexOf("ssr") !=-1){
+                    if(Math.random() > 0.5){
+                      $("#ring"+i+" .item_11").css("background-image",pic2);
+                      $("#ring"+i+" .item_"+index).css("background-image",pic1);
+                    }
+            }else{
+              $("#ring"+i+" .item_11").css("background-image",pic2);
+              $("#ring"+i+" .item_"+index).css("background-image",pic1);
+
+            }
         break;  //item11
         case 1:
             var pic1= $("#ring"+i+" .item_14").css("background-image"); 
             var pic2 = $("#ring"+i+" .item_"+index).css("background-image");
-            $("#ring"+i+" .item_14").css("background-image",pic2);
-            $("#ring"+i+" .item_"+index).css("background-image",pic1);
+            if(pic2.indexOf("ssr") !=-1){
+                    if(Math.random() > 0.5){
+                      $("#ring"+i+" .item_11").css("background-image",pic2);
+                      $("#ring"+i+" .item_"+index).css("background-image",pic1);
+                    }
+            }else{
+                $("#ring"+i+" .item_14").css("background-image",pic2);
+                $("#ring"+i+" .item_"+index).css("background-image",pic1);
+            }
 
         break;  //item14
       }
